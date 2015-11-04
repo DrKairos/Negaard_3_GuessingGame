@@ -4,47 +4,56 @@
  * and open the template in the editor.
  */
 package negaard_3_guessinggame;
-
-import java.util.Random;
 import java.util.Scanner;
-
+import java.util.Random;
 /**
  *
  * @author DrKairos
  */
 public class Negaard_3_GuessingGame {
-
-    static int magicnumber;
-    static int userguess;
-    static String username;
-    static Random randy = new Random();
-    static boolean playagain;
-    static int guessesleft=7;
-    static int counter;
-    
+static boolean playagain;
+static Scanner sc = new Scanner(System.in);
+static Random rand = new Random();
+static int counter = 5;
+  
     public static void main(String[] args) {
-        Scanner sc = new Scanner (System.in);
-        Random rand = new Random();
-        System.out.println("What is your name?");
-        String name = sc.nextLine();
-        System.out.println("Guess a number between 0-10,"+ name );
-        int guess = sc.nextInt();
-        int randomNum = rand.nextInt(11);
-        if(guess == randomNum) {
-            System.out.println("Correct, you win!");
-        } else {
-        System.out.println("Incorrect! You guessed "+guess+" and the number was "+randomNum+". Try again!");
-        
-        
-    } 
-    }
+        playagain = true;
+      System.out.println("What is your name?");
+      String name = sc.nextLine();
+      while (counter > 0){
+      System.out.println("Okay " + name + ", guess a number from 0 to 100!" + " you have " + counter + " guesses left!");
+       // runs aslong the condition statement is true
+           playthegame();
+          
+           if (counter == 1){
+               System.out.println("You lose.");
+               playagain = false;
+              
+           }
+           counter--;
+      }
+      
+   }
+static void playthegame(){
+       int guess = sc.nextInt();
+       int number = rand.nextInt(101);
+       if (guess > 100){
+           System.out.println("I said between 0 and 100");
+       }
+       else{
+           if(guess == number){
+               System.out.println("You're right, it was "+ guess +"!" + "You win!");
+            playagain = false;
+           }
+            else{
+           if(guess > number){
+            System.out.println("Sorry you guessed too high! You guessed " + guess  + " and it was " + number + "!");
+           }
+          
+           else{
+             System.out.println("Sorry you guessed too low! You guessed " + guess + " and it was " + number + "!");
+               }
+              } 
+            }
+       }
 }
-     
-    
-
-
-
-
-
-
-
